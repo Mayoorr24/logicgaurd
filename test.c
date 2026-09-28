@@ -20,6 +20,12 @@ int main() {
             break;
         }
     }
+    int j = 1;
+
+while (j > 0) {
+    printf(j);
+    j += 2;
+}
 
     return 0;
 }
