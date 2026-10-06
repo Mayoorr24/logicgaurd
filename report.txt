@@ -1,0 +1,7 @@
+=== Static Analysis Report ===
+
+Line 4 [WARNING]: Unreachable code detected
+Line 14 [CRITICAL]: Likely infinite loop
+Line 26 [CRITICAL]: Integer overflow suspected - 'count' (short, max 32767), estimated final value 32800
+
+=== End of Report ===

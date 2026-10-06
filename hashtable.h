@@ -13,5 +13,6 @@ typedef struct VarState {
 void insert_var(char *name, char *type, long value);
 VarState* lookup_var(char *name);
 unsigned int hash(char *str);
+long get_type_max(char *type);
 
 #endif

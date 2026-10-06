@@ -4,16 +4,16 @@
 #include "parser.h"
 #include "hashtable.h"
 
-// ---- File Reading ----
+/* ---------- File Reading ---------- */
 int load_file(const char *filename, char lines[][MAX_LINE_LEN]) {
     FILE *fp = fopen(filename, "r");
     if (!fp) {
-        printf("Error: could not open file %s\n", filename);
-        exit(1);
+        printf("Error: could not open file '%s'. Please check the filename and try again.\n", filename);
+        return 0;   // return 0 lines instead of killing the whole program
     }
 
     int count = 0;
-    while (fgets(lines[count], MAX_LINE_LEN, fp) && count < MAX_LINES) {
+    while (count < MAX_LINES && fgets(lines[count], MAX_LINE_LEN, fp)) {
         count++;
     }
 
@@ -21,7 +21,7 @@ int load_file(const char *filename, char lines[][MAX_LINE_LEN]) {
     return count;
 }
 
-// ---- Variable Extraction ----
+/* ---------- Variable Extraction ---------- */
 void extract_variable_declarations(char lines[][MAX_LINE_LEN], int n) {
     char type[10];
     char name[30];
@@ -44,7 +44,7 @@ void extract_variable_declarations(char lines[][MAX_LINE_LEN], int n) {
     }
 }
 
-// ---- Brace Stack ----
+/* ---------- Brace Stack ---------- */
 void init_stack(BraceStack *s) {
     s->top = -1;
 }
@@ -69,7 +69,7 @@ int is_empty(BraceStack *s) {
     return s->top == -1;
 }
 
-// ---- Brace Matching ----
+/* ---------- Brace Matching ---------- */
 int find_matching_brace(char lines[][MAX_LINE_LEN], int open_line, int n) {
     BraceStack stack;
     init_stack(&stack);

@@ -34,3 +34,11 @@ VarState* lookup_var(char *name) {
     }
     return NULL;
 }
+
+long get_type_max(char *type) {
+    if (strcmp(type, "short") == 0) return 32767;
+    if (strcmp(type, "int") == 0) return 2147483647;
+    if (strcmp(type, "char") == 0) return 127;
+    if (strcmp(type, "long") == 0) return 2147483647;
+    return -1;
+}
